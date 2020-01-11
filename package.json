@@ -1,7 +1,7 @@
 {
   "name": "browser-monitor",
   "version": "1.0.0",
-  "description": "A web extension logging web requests, tabs activities ans user actions",
+  "description": "A web extension logging web requests, tabs activities",
   "main": "index.js",
   "scripts": {
     "start": "web-ext run --source-dir ./src/",

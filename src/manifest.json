@@ -29,6 +29,10 @@
 		"default_popup": "browserAction/index.html",
 		"default_title": "logext"
 	},
+	"options_ui": {
+		"page": "options/options.html",
+		"browser_style": true
+	  },
 	"permissions": [
 		"storage",
 		"tabs",

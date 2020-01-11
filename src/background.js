@@ -1,31 +1,16 @@
-// Put all the javascript code here, that you want to execute in background.
+let logTabData = {
+    index:0,
+    url: "logs/logs.html",
+  };
+let logTab = browser.tabs.create(logTabData);
 
-
-
+// Yeeeah
 function start() {
-    console.log("Start Logging !");
     addListeners();
 }
 
 function stop() {
-    console.log("Stop Logging !");
     removeListeners();
-}
-
-
-// Add listeners
-function addListeners() {
-    console.log("Add Listeners");
-    browser.webRequest.onBeforeRequest.addListener(
-        webListener,
-        {urls: ["<all_urls>"]}
-      );
-}
-
-// Remove Listeners
-function removeListeners() {
-    console.log("Remove Listeners");
-    browser.webRequest.onBeforeRequest.removeListener(webListener);
 }
 
 // Messages
@@ -42,5 +27,25 @@ function messageListener(message) {
             console.warn("Unknown event :", event);
     }
 }
+
+
+// init options
+let options = {
+    tabs : {
+        urls : ["*://*"],
+        properties : ["status","title"]
+    },
+    webRequests : {
+        urls: ["https://*"],
+        types: ["xmlhttprequest"]
+    }
+};
+
+browser.storage.local.set({options});
+browser.storage.local.set({running : false});
+
+browser.storage.local.get().then(data => {
+    console.log("Storage", data);
+})
 
 browser.runtime.onMessage.addListener(messageListener);
